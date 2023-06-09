@@ -1,0 +1,28 @@
+@import "../../node_modules/antd/dist/reset.css";
+@import "./reset.css";
+@import "./fonts.css";
+
+:root {
+  --primary-dark: #24272C;
+  --primary: #7E848B;
+  --primary-light: #FFFAFA;
+
+  --yellow: #E1CC1B;
+  --red: #CD0D0D;
+  --green: #28CC1A;
+
+  --inter-black: "Inter-Black", "sans-serif";
+  --inter-extrabold: "Inter-ExtraBold", "sans-serif";
+  --inter-semibold: "Inter-SemiBold", "sans-serif";
+  --inter-medium: "Inter-Medium", "sans-serif";
+  --inter-regular: "Inter-Regular", "sans-serif";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--inter-regular);
+  background-color: var(--primary-light);
+}
