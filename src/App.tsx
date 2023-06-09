@@ -2,14 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="app-container">
+      <div className="layout-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<AdminPanel />} />

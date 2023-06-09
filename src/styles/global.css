@@ -3,19 +3,29 @@
 @import "./fonts.css";
 
 :root {
+  /* Colors */
   --primary-dark: #24272C;
-  --primary: #7E848B;
+  --primary: #2c2c2c;
   --primary-light: #FFFAFA;
-
+  
   --yellow: #E1CC1B;
   --red: #CD0D0D;
   --green: #28CC1A;
+  
+  --shadow-dark: rgba(27, 27, 27, 0.5);;
+  --shadow: rgba(71, 71, 71, 0.5);;
+  --shadow-light: rgba(122, 122, 122, 0.5);
+  
 
+  /* Fonts */
   --inter-black: "Inter-Black", "sans-serif";
   --inter-extrabold: "Inter-ExtraBold", "sans-serif";
   --inter-semibold: "Inter-SemiBold", "sans-serif";
   --inter-medium: "Inter-Medium", "sans-serif";
   --inter-regular: "Inter-Regular", "sans-serif";
+
+  /* Others */
+  --navbar-height: 3.5rem;
 }
 
 * {
@@ -24,5 +34,7 @@
 
 body {
   font-family: var(--inter-regular);
+  font-size: 0.875rem;
+  color: var(--primary-dark);
   background-color: var(--primary-light);
 }

@@ -1,26 +1,31 @@
 .navbar-container {
   position: fixed;
+  z-index: 10;
   width: 100%;
+  height: var(--navbar-height);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 1rem 2rem;
-  background-color: blue;
+
+  background-color: var(--primary-light);
+  box-shadow: 0 1px 4px var(--shadow-light);
 }
 
-.navbar-container > ul {
+.navbar-items {
   display: none;
   align-items: center;
-
   gap: 1rem;
-  list-style: none;
-
 }
 
-@media (min-width: 440px) and (max-width: 575.98px) {
-  .navbar-container > ul {
+.navbar-items > button > a {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+@media (min-width: 440px) {
+  .navbar-items {
     display: flex;
   }
 }
