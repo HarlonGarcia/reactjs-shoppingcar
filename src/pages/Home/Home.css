@@ -1,0 +1,17 @@
+.home-container {
+  max-width: 100%;
+}
+
+.home-container > h1 {
+  margin-bottom: 1rem;
+  font-family: var(--inter-semibold);
+  font-size: 1.25rem;
+}
+
+.home-offers-container  {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+}

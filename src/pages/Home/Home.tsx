@@ -1,9 +1,9 @@
-import "./Home.css";
 import React from "react";
+import "./Home.css";
 import { useDispatch } from "react-redux";
-import { Card, Space } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Space } from "antd";
 
+import OfferCard from "../../components/OfferCard/OfferCard";
 import { useOfferSelector } from "../../hooks/useOfferSelector";
 import { getOffers } from "../../features/offer-slice";
 import { AppDispatch } from "../../utils/store";
@@ -21,20 +21,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="home-container">
       <h1>Melhores ofertas</h1>
-      <Space>
+      <div className="home-offers-container">
         {offers.map((offer, index) => (
-          <Card
-            key={index.toString() + offer.model}
-            title={offer.model}
-            content=""
-            hoverable
-          >
-            <Meta title={offer.brand} description={offer.color} />
-          </Card>
+          <OfferCard key={index.toString() + offer.model} data={offer} />
         ))}
-      </Space>
+      </div>
     </div>
   );
 }

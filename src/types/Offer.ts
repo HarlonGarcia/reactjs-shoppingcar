@@ -1,14 +1,14 @@
 interface Offer {
-  id: Number;
-  brand: String;
-  model: String;
-  year: String;
-  price: Number;
-  color: String;
-  mileage: String;
-  licensePlate: String;
-  city: String;
-  photos: String[];
+  id: number;
+  brand: string;
+  model: string;
+  year: string;
+  price: number;
+  color: string;
+  mileage: string;
+  licensePlate: string;
+  city: string;
+  photos: string[];
   registrationDate: Date;
-  views: Number;
+  views: number;
 }
