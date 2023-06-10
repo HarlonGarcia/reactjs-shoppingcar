@@ -9,15 +9,23 @@
   overflow: hidden;
 }
 
-.card-cover > img, .cover-skeleton {
+.card-cover > img {
   width: 100%;
   height: auto;
+  min-height: 10rem;
   object-fit: cover;
 }
 
 .ant-card-meta-title {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-family: var(--inter-extrabold);
+}
+
+.ant-card-body > h3 {
+  margin-bottom: 0.75rem;
+  
+  font-size: 0.875rem;
+  color: var(--shadow-dark);
 }
 
 .card-details {
@@ -28,7 +36,6 @@
 .card-views > small {
   margin-right: 0.5rem;
 }
-
 
 @media (min-width: 440px) {
   .card-container {

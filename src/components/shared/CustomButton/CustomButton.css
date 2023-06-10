@@ -1,0 +1,14 @@
+.custom-button {
+  max-width: 10rem;
+  padding: 0.25rem;
+
+  font-size: 0.75rem;
+  font-family: var(--inter-regular);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 1px var(--shadow-light);
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-button:hover {
+  box-shadow: 0 2px 4px var(--shadow-light);
+}
