@@ -1,7 +1,6 @@
 import React from "react";
 import "./Details.css";
 import { useParams } from "react-router-dom";
-import { Carousel } from "antd";
 import {
   BgColorsOutlined,
   CalendarOutlined,
@@ -15,6 +14,7 @@ import {
 import { api } from "../../utils/api";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { formatDate } from "../../utils/formatDate";
+import PhotosCarousel from "../../components/PhotosCarousel/PhotosCarousel";
 
 export default function Details() {
   const [offer, setOffer] = React.useState<Offer | null>(null);
@@ -31,20 +31,21 @@ export default function Details() {
     }
   }, []);
 
-  if (!offer) return null;
+  if (!offer)
+    return (
+      <div className="details-nodata">
+        <h1>Não há nada aqui</h1>
+        <span>{`:(`}</span>
+      </div>
+    );
   return (
     <div className="details-container">
       <h1>{offer.model}</h1>
-      <Carousel className="details-carousel" accessibility draggable autoplay>
-        {offer.photos.map((photoUrl, index) => (
-          <img
-            key={index}
-            className="details-image"
-            src={photoUrl}
-            alt={offer.model}
-          />
-        ))}
-      </Carousel>
+      <PhotosCarousel
+        views={offer.views}
+        photos={offer.photos}
+        model={offer.model}
+      />
       <div>
         <small>Preço</small>
         <strong>{formatCurrency(offer.price)}</strong>

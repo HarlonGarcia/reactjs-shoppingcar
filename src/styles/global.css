@@ -11,6 +11,8 @@
   --yellow: #E1CC1B;
   --red: #CD0D0D;
   --green: #28CC1A;
+  --blue: #0781d3;
+  --blue-dark: #4d6281;
   
   --shadow-dark: rgba(27, 27, 27, 0.5);;
   --shadow: rgba(71, 71, 71, 0.5);;
@@ -37,4 +39,16 @@ body {
   font-size: 0.875rem;
   color: var(--primary-dark);
   background-color: var(--primary-light);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue-dark);
 }
