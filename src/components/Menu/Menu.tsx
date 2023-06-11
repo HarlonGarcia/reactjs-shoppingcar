@@ -1,4 +1,3 @@
-import React from "react";
 import "./Menu.css";
 import { AppstoreAddOutlined, CarOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./OfferCard.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

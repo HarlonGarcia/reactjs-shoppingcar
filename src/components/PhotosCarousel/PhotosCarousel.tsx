@@ -1,4 +1,3 @@
-import React from "react";
 import "./PhotosCarousel.css";
 import { EyeOutlined } from "@ant-design/icons";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import "./OfferForm.css";
 import useForm from "../../hooks/useForm";
 import { api } from "../../utils/api";
@@ -42,7 +41,6 @@ export default function OfferForm({
         "Content-Type": "multipart/form-data",
       },
     });
-    const refresh = () => window.location.reload();
     onClose();
   };
 

@@ -4,7 +4,6 @@ import { Input, Space, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { useOfferSelector } from "../../hooks/useOfferSelector";
-import DataNotFound from "../../components/shared/DataNotFound/DataNotFound";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import { useDispatch } from "react-redux";
 import { getOffers } from "../../features/offer-slice";

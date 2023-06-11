@@ -4,7 +4,6 @@ import { api } from "../../utils/api";
 import { ActionEnum } from "../../pages/AdminPanel/AdminPanel";
 import OfferForm from "../OfferForm/OfferForm";
 import Overlay from "../Overlay/Overlay";
-import { setNotUpdated } from "../../features/offer-slice";
 
 interface ConfirmationModalProps {
   isOpen: boolean;
