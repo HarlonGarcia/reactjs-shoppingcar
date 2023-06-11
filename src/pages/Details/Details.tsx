@@ -33,7 +33,7 @@ export default function Details() {
 
   if (!offer)
     return (
-      <div className="details-nodata">
+      <div className="not-found">
         <h1>Não há nada aqui</h1>
         <span>{`:(`}</span>
       </div>

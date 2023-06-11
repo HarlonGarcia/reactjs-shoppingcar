@@ -10,6 +10,7 @@ import CustomButton from "../shared/CustomButton/CustomButton";
 import { api } from "../../utils/api";
 import { setNotUpdated } from "../../features/offer-slice";
 import { formatCurrency } from "../../utils/formatCurrency";
+import not_found from "../../assets/not-found.jpg";
 
 interface OfferListProps {
   data: Offer[];
@@ -51,13 +52,7 @@ function ListItem({ offer }: ListItemProps) {
     <List.Item
       extra={
         <figure className="row-cover">
-          <img
-            src={
-              offer.photos[0] ||
-              "https://api.slingacademy.com/public/sample-photos/1.jpeg"
-            }
-            alt={offer.model}
-          />
+          <img src={offer.photos[0] || not_found} alt={offer.model} />
         </figure>
       }
     >

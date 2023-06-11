@@ -12,6 +12,7 @@ import { AppDispatch } from "../../utils/store";
 import CustomButton from "../../components/shared/CustomButton/CustomButton";
 import OfferList from "../../components/OfferList/OfferList";
 import OfferCards from "../../components/OfferCard/OfferCard";
+import DataNotFound from "../../components/shared/DataNotFound/DataNotFound";
 
 const selectedButton = {
   backgroundColor: "#2c2c2c",
@@ -24,14 +25,17 @@ export default function Home() {
   const isUpdated = useOfferSelector((state) => state.isUpdated);
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchData = async (startsWith?: string) => {
-    startsWith ? "" : dispatch(getOffers());
+  const fetchData = async () => {
+    dispatch(getOffers());
   };
 
   React.useEffect(() => {
     fetchData();
   }, [isUpdated]);
 
+  if (offers.length <= 0) {
+    return <DataNotFound path="home" />;
+  }
   return (
     <div className="home-container">
       <header className="home-header">

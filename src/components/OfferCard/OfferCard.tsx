@@ -10,6 +10,7 @@ import { api } from "../../utils/api";
 import CustomButton from "../shared/CustomButton/CustomButton";
 import { setNotUpdated } from "../../features/offer-slice";
 import { formatCurrency } from "../../utils/formatCurrency";
+import not_found from "../../assets/not-found.jpg";
 
 interface OfferCardProps {
   data: Offer[];
@@ -44,13 +45,7 @@ function OfferCardItem({ offer }: OfferCardItemProps) {
       className="card-container"
       cover={
         <figure className="card-cover">
-          <img
-            src={
-              offer.photos[0] ||
-              "https://api.slingacademy.com/public/sample-photos/1.jpeg"
-            }
-            alt={offer.model}
-          />
+          <img src={offer.photos[0] || not_found} alt={offer.model} />
         </figure>
       }
       actions={[

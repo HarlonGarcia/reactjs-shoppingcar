@@ -16,7 +16,8 @@ const initialState: OfferState = {
 };
 
 export const getOffers = createAsyncThunk("getOffers", async () => {
-  const { data } = await api("/offers");
+  const { data } = await api.get("/offers");
+
   return data;
 });
 
@@ -29,6 +30,9 @@ export const offerSlice = createSlice({
     },
     setNotUpdated: (state) => {
       state.isUpdated = false;
+    },
+    updateOffers: (state, action: PayloadAction<Offer[]>) => {
+      state.offers = action.payload;
     },
   },
   extraReducers: (builder) => {
