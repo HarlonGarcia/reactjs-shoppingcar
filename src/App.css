@@ -1,6 +1,6 @@
 .layout-container {
   max-width: 100%;
   
-  padding: 2rem;
-  padding-top: 5.5rem;
+  padding: 2.5rem;
+  padding-top: calc(2.5rem + 3.5rem);
 }
