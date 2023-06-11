@@ -9,6 +9,7 @@ import { AppDispatch } from "../../utils/store";
 import CustomButton from "../shared/CustomButton/CustomButton";
 import { api } from "../../utils/api";
 import { setNotUpdated } from "../../features/offer-slice";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface OfferListProps {
   data: Offer[];
@@ -43,7 +44,7 @@ function ListItem({ offer }: ListItemProps) {
   const goToDetails = () => {
     api.patch(`/offers/${offer.id}`);
     dispatch(setNotUpdated());
-    navigate(`/details/${offer.id}`);
+    navigate(`/${offer.id}`);
   };
 
   return (
@@ -68,7 +69,7 @@ function ListItem({ offer }: ListItemProps) {
           <h3>{offer.brand}</h3>
         </div>
         <div className="row-details">
-          <strong>R${offer.price}</strong>
+          <strong>{formatCurrency(offer.price)}</strong>
           <CustomButton onClick={goToDetails} defaultStyles>
             Ver detalhes
           </CustomButton>

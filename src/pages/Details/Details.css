@@ -1,0 +1,149 @@
+.details-container {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  color: var(--primary-dark);
+}
+
+.details-container > h1 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-family: var(--inter-black);
+}
+
+.details-container > div {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2rem;
+}
+
+.details-container > div > small {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-family: var(--inter-semibold);
+}
+
+.details-container > div > strong {
+  width: fit-content;
+
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-family: var(--inter-semibold);
+  background-color: var(--yellow);
+  border-radius: 0.25rem;
+}
+
+.details-carousel {
+  max-height: 16rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.details-carousel > *  {
+  height: 100%;
+}
+
+.details-image {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.details-image:hover {
+  filter: brightness(0.6);
+}
+
+.details-characteristics > h2 {
+  font-size: 1rem;
+  font-family: var(--inter-extrabold);
+  margin-bottom: 1.75rem;
+}
+
+.details-characteristics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info {
+  display: flex;  
+  align-items: center;
+  gap: 0.75rem;
+
+  font-size: 1.25rem;
+  font-family: var(--inter-medium);
+}
+
+.info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  font-size: 1rem;
+}
+
+.info > div > small {
+  font-size: 0.825rem;
+  color: var(--shadow-dark);
+}
+
+@media (min-width: 440px) {
+  .details-carousel {
+    max-height: 20rem;
+  }
+
+  .details-characteristics > div {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .details-carousel {
+    max-height: 24rem;
+  }
+
+  .details-container > div > strong {
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  .details-characteristics > div {
+    gap: 6rem;
+  }
+
+  .info {
+    font-size: 1.5rem;
+  }
+
+  .info > div {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .details-container > h1 {
+    margin-bottom: 1.25rem;
+  
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .details-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
