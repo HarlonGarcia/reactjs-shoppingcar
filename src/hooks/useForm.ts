@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent } from "react";
 
 const useForm = (initialState: OfferDto) => {
   const [formData, setFormData] = useState<OfferDto>(initialState);

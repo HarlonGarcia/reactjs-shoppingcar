@@ -1,6 +1,6 @@
 .navbar-container {
   position: fixed;
-  z-index: 2;
+  z-index: 99999;
   width: 100%;
   height: var(--navbar-height);
 
@@ -11,6 +11,10 @@
 
   background-color: var(--primary-light);
   box-shadow: 0 1px 4px var(--shadow-light);
+}
+
+.navbar-container > h1 {
+  font-family: var(--inter-black);
 }
 
 .navbar-items {
