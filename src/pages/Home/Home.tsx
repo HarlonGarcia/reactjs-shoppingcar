@@ -22,7 +22,6 @@ const selectedButton = {
 export default function Home() {
   const [isGrade, setIsGrade] = React.useState(true);
   const offers = useOfferSelector((state) => [...state.offers].flat());
-  const isUpdated = useOfferSelector((state) => state.isUpdated);
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchData = async () => {
@@ -31,7 +30,7 @@ export default function Home() {
 
   React.useEffect(() => {
     fetchData();
-  }, [isUpdated]);
+  }, []);
 
   if (offers.length <= 0) {
     return <DataNotFound path="home" />;
