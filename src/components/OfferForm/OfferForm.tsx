@@ -1,9 +1,11 @@
 import "./OfferForm.css";
 import { CloseOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 import useForm from "../../hooks/useForm";
 import { createNewOffer, updateOfferById } from "../../services/offers-service";
+import { toastOptions } from "../../utils/options";
 
 interface OfferFormProps {
   currentState: Offer | null;
@@ -33,13 +35,27 @@ export default function OfferForm({
   );
 
   const handleEditOffer = async (offerId: number, payload: OfferDto) => {
-    updateOfferById(offerId, payload);
+    const response = await updateOfferById(offerId, payload);
+
+    if (response.status == 200) {
+      toast.success("Oferta editar com sucesso!", toastOptions);
+    } else {
+      toast.error("Erro ao editar oferta!", toastOptions);
+    }
+
     clearCurrentOffer();
     onClose();
   };
 
   const handleAddOffer = async (payload: OfferDto) => {
-    createNewOffer(payload);
+    const response = await createNewOffer(payload);
+
+    if (response.status == 201) {
+      toast.success("Oferta criada com sucesso!", toastOptions);
+    } else {
+      toast.error("Erro ao criar oferta!", toastOptions);
+    }
+
     onClose();
   };
 

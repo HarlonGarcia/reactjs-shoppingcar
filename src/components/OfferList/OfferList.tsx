@@ -8,7 +8,7 @@ import CustomButton from "../shared/CustomButton/CustomButton";
 import { formatCurrency } from "../../utils/formatCurrency";
 import not_found from "../../assets/not-found.jpg";
 import { updateOfferViewsById } from "../../services/offers-service";
-import { container, item } from "../../utils/animationOptions";
+import { container, item } from "../../utils/options";
 
 interface OfferListProps {
   data: Offer[];

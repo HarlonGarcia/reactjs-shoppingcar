@@ -1,16 +1,18 @@
 import React from "react";
 import "./Overlay.css";
+
 import OfferForm from "../OfferForm/OfferForm";
 import { ActionEnum } from "../../pages/AdminPanel/AdminPanel";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { deleteOfferById } from "../../services/offers-service";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../utils/options";
 
 interface OverlayProps {
   isOpen: boolean;
   toggleModal: () => void;
   currentOffer: Offer | null;
   action: ActionEnum;
-  onCancel: () => void;
   clearCurrentOffer: () => void;
 }
 
@@ -19,7 +21,6 @@ export default function Overlay({
   toggleModal,
   currentOffer,
   action,
-  onCancel,
   clearCurrentOffer,
 }: OverlayProps) {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -29,10 +30,8 @@ export default function Overlay({
     if (action == ActionEnum.ADD || action == ActionEnum.EDIT) {
       setIsForm(true);
       toggleModal();
-    } else {
-      if (currentOffer) {
-        handleDeleteOffer(currentOffer.id);
-      }
+    } else if (currentOffer) {
+      handleDeleteOffer(currentOffer.id);
     }
   };
 
@@ -45,12 +44,18 @@ export default function Overlay({
   const handleDeleteOffer = async (offerId: number) => {
     if (offerId) {
       setIsLoading(true);
-      deleteOfferById(offerId);
 
-      setTimeout(() => {
-        setIsLoading(false);
-        handleClose();
-      }, 3000);
+      const response = await deleteOfferById(offerId);
+      console.log(response);
+
+      if (response.status == 201) {
+        toast.success("Oferta deletada com sucesso!", toastOptions);
+      } else {
+        toast.error("Erro ao deletar oferta!"), toastOptions;
+      }
+
+      setIsLoading(false);
+      handleClose();
     }
   };
 
@@ -61,7 +66,7 @@ export default function Overlay({
         isLoading={isLoading}
         action={action}
         onOk={handleAction}
-        onCancel={onCancel}
+        onCancel={toggleModal}
       />
       {isOpen || isForm ? (
         <div className="overlay" onClick={handleClose}></div>

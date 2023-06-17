@@ -15,22 +15,19 @@ const getOffersByModel = async (model: string): Promise<Offer[]> => {
   return data;
 };
 
-const createNewOffer = async (payload: Offer | OfferDto): Promise<Offer> => {
-  const { data } = await api.post(`/offers`, payload, {
+const createNewOffer = async (payload: Offer | OfferDto) => {
+  const response = await api.post(`/offers`, payload, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
-  return data;
+  return response;
 };
 
-const updateOfferById = async (
-  id: number,
-  payload: Offer | OfferDto
-): Promise<Offer> => {
-  const { data } = await api.put(`/offers/${id}`, payload);
-  return data;
+const updateOfferById = async (id: number, payload: Offer | OfferDto) => {
+  const response = await api.put(`/offers/${id}`, payload);
+  return response;
 };
 
 const updateOfferViewsById = async (id: number): Promise<Offer> => {

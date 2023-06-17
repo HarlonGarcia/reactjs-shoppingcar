@@ -1,3 +1,5 @@
+import { ToastOptions } from "react-toastify";
+
 export const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -16,4 +18,8 @@ export const item = {
     y: 0,
     opacity: 1,
   },
+};
+
+export const toastOptions: ToastOptions = {
+  position: "top-center",
 };

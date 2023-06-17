@@ -33,7 +33,7 @@ export default function AdminPanel() {
 
   React.useEffect(() => {
     fetchData();
-  }, [isOpen]);
+  }, [isOpen, currentOffer]);
 
   const onSearch = async (value: string) => {
     const response = await getOffersByModel(value);
@@ -69,7 +69,6 @@ export default function AdminPanel() {
         currentOffer={currentOffer}
         clearCurrentOffer={clearCurrentOffer}
         action={action}
-        onCancel={() => setIsOpen(false)}
       />
       <div className="admin-header">
         <Input.Search

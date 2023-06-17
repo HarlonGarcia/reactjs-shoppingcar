@@ -1,7 +1,7 @@
 import "./PhotosCarousel.css";
 import { EyeOutlined, FileExcelOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
-import { container, item } from "../../utils/animationOptions";
+import { container, item } from "../../utils/options";
 interface PhotosCarouselProps {
   views: number;
   photos: string[];
