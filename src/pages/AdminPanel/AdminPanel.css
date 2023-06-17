@@ -1,5 +1,5 @@
 .admin-container {
-  max-width: 100%;
+  width: 100%;
   font-family: var(--inter-regular);
 }
 
@@ -9,8 +9,24 @@
   margin-bottom: 2rem;
 }
 
+.admin-search > span, .admin-search > input {
+  background-color: var(--primary-light);
+}
+
 .admin-table {
+  padding: 0.75rem;
   margin-bottom: 2rem;
+
+  border-radius: 0.5rem;
+  box-shadow: 0px 3px 3px var(--shadow-light);
+}
+
+.edit-icon {
+  color: var(--blue);
+}
+
+.delete-icon {
+  color: var(--red);
 }
 
 .admin-add-button {
@@ -18,7 +34,21 @@
   
   font-family: var(--inter-semibold);
   background-color: var(--green);
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.admin-add-button:hover {  
+  background-color: var(--green-dark);
+}
+
+.admin-table-row-odd {
+  background-color: var(--primary-light);
+}
+
+.admin-table-row-even {
+  background-color: var(--shadow-clearer);
 }
 
 @media (min-width: 1200px) {

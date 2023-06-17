@@ -39,7 +39,11 @@
 
 @media (min-width: 440px) {
   .card-container {
-    width: 48%;
+    width: 47.6%;
+  }
+
+  .card-views > small {
+    margin-right: 0.25rem;
   }
 }
 
@@ -51,10 +55,6 @@
 
 @media (min-width: 1200px) {
   .card-container {
-    width: 23.3%;
+    width: 23%;
   }
 }
-
-@media (min-width: 1200px) {
-}
-

@@ -1,86 +1,54 @@
+import "./ConfirmationModal.css";
 import { Modal } from "antd";
-import React from "react";
-import { api } from "../../utils/api";
+
 import { ActionEnum } from "../../pages/AdminPanel/AdminPanel";
-import OfferForm from "../OfferForm/OfferForm";
-import Overlay from "../Overlay/Overlay";
 
 interface ConfirmationModalProps {
   isOpen: boolean;
-  toggleModal: () => void;
-  currentOffer: Offer | null;
+  isLoading: boolean;
   action: ActionEnum;
+  onOk: () => void;
   onCancel: () => void;
-  clearCurrentOffer: () => void;
 }
 
 export default function ConfirmationModal({
   isOpen,
-  toggleModal,
-  currentOffer,
+  isLoading,
   action,
+  onOk,
   onCancel,
-  clearCurrentOffer,
 }: ConfirmationModalProps) {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isForm, setIsForm] = React.useState(false);
-
-  const handleAction = () => {
-    if (action == ActionEnum.ADD || action == ActionEnum.EDIT) {
-      setIsForm(true);
-      toggleModal();
-    } else {
-      if (currentOffer) {
-        handleDeleteOffer(currentOffer.id);
-      }
+  const selectActionText = (action: ActionEnum) => {
+    if (action == ActionEnum.EDIT) {
+      return "Editar";
     }
-  };
-
-  const handleDeleteOffer = async (offerId: number) => {
-    if (offerId) {
-      setIsLoading(true);
-      api.delete(`/offers/${offerId}`);
-
-      setTimeout(() => {
-        setIsLoading(false);
-        handleClose();
-      }, 3000);
+    if (action == ActionEnum.ADD) {
+      return "Adicionar";
     }
-  };
-
-  const handleClose = () => {
-    toggleModal();
-    setIsForm(false);
-    clearCurrentOffer();
+    if (action == ActionEnum.DELETE) {
+      return "Deletar";
+    }
   };
 
   return (
     <>
-      {isOpen || isForm ? <Overlay onClose={handleClose} /> : null}
       <Modal
-        title={action == ActionEnum.DELETE ? "Deletar oferta" : "Editar oferta"}
+        title={`${selectActionText(action)} oferta`}
         open={isOpen}
-        onOk={handleAction}
+        onOk={onOk}
         confirmLoading={isLoading}
         onCancel={onCancel}
       >
-        <p>
-          Você tem certeza que deseja{" "}
-          {action == ActionEnum.DELETE
-            ? "deletar"
-            : action == ActionEnum.ADD
-            ? "adicionar"
-            : "editar"}{" "}
+        <p className="modal-description">
+          Você tem certeza que deseja
+          <span
+            className={`${action == ActionEnum.DELETE ? "modal-delete" : ""}`}
+          >
+            {selectActionText(action)?.toLowerCase()}
+          </span>
           a oferta?
         </p>
       </Modal>
-      {isForm ? (
-        <OfferForm
-          currentState={currentOffer}
-          onClose={handleClose}
-          clearCurrentOffer={clearCurrentOffer}
-        />
-      ) : null}
     </>
   );
 }

@@ -11,18 +11,18 @@ import {
   TagOutlined,
 } from "@ant-design/icons";
 
-import { api } from "../../utils/api";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { formatDate } from "../../utils/formatDate";
 import PhotosCarousel from "../../components/PhotosCarousel/PhotosCarousel";
+import { getOfferById } from "../../services/offers-service";
 
 export default function Details() {
   const [offer, setOffer] = React.useState<Offer | null>(null);
   const { offerId } = useParams();
 
   const getCurrentOffer = async (offerId: string) => {
-    const { data } = await api.get(`/offers/${offerId}`);
-    setOffer(data);
+    const response = await getOfferById(Number(offerId));
+    setOffer(response);
   };
 
   React.useEffect(() => {

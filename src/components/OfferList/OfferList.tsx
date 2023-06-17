@@ -1,15 +1,12 @@
 import "./OfferList.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { List } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 
-import { AppDispatch } from "../../utils/store";
 import CustomButton from "../shared/CustomButton/CustomButton";
-import { api } from "../../utils/api";
-import { setNotUpdated } from "../../features/offer-slice";
 import { formatCurrency } from "../../utils/formatCurrency";
 import not_found from "../../assets/not-found.jpg";
+import { updateOfferViewsById } from "../../services/offers-service";
 
 interface OfferListProps {
   data: Offer[];
@@ -39,11 +36,9 @@ export default function OfferList({ data }: OfferListProps) {
 
 function ListItem({ offer }: ListItemProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
   const goToDetails = () => {
-    api.patch(`/offers/${offer.id}`);
-    dispatch(setNotUpdated());
+    updateOfferViewsById(offer.id);
     navigate(`/${offer.id}`);
   };
 

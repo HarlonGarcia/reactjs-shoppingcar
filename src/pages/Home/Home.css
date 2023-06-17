@@ -44,12 +44,17 @@
   .home-header {
     margin-bottom: 2rem;
   }
+
 }
 
 @media (min-width: 1200px) {
   .home-offers-container, .home-header {
     width: 80%;
     margin: 0 auto;
+  }
+  
+  .home-offers-container  {
+    gap: 1.5rem;
   }
 
   .home-header {

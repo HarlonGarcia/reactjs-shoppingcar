@@ -11,7 +11,7 @@ import { getOffers } from "../../features/offer-slice";
 import { AppDispatch } from "../../utils/store";
 import CustomButton from "../../components/shared/CustomButton/CustomButton";
 import OfferList from "../../components/OfferList/OfferList";
-import OfferCards from "../../components/OfferCard/OfferCard";
+import OfferCards from "../../components/OfferCards/OfferCards";
 import DataNotFound from "../../components/shared/DataNotFound/DataNotFound";
 
 const selectedButton = {

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../utils/api";
+import { getAllOffers } from "../services/offers-service";
 
 interface OfferState {
   offers: Offer[];
@@ -16,9 +16,8 @@ const initialState: OfferState = {
 };
 
 export const getOffers = createAsyncThunk("getOffers", async () => {
-  const { data } = await api.get("/offers");
-
-  return data;
+  const response = await getAllOffers();
+  return response;
 });
 
 export const offerSlice = createSlice({

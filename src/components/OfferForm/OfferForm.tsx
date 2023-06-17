@@ -1,6 +1,8 @@
 import "./OfferForm.css";
+import { CloseOutlined } from "@ant-design/icons";
+
 import useForm from "../../hooks/useForm";
-import { api } from "../../utils/api";
+import { createNewOffer, updateOfferById } from "../../services/offers-service";
 
 interface OfferFormProps {
   currentState: Offer | null;
@@ -30,17 +32,13 @@ export default function OfferForm({
   );
 
   const handleEditOffer = async (offerId: number, payload: OfferDto) => {
-    await api.put(`/offers/${offerId}`, payload);
+    updateOfferById(offerId, payload);
     clearCurrentOffer();
     onClose();
   };
 
   const handleAddOffer = async (payload: OfferDto) => {
-    await api.post(`/offers`, payload, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    createNewOffer(payload);
     onClose();
   };
 
@@ -57,6 +55,11 @@ export default function OfferForm({
 
   return (
     <div className="form-container">
+      <div className="form-header">
+        <button onClick={onClose}>
+          <CloseOutlined />
+        </button>
+      </div>
       <form className="form-content">
         <div className="form-group">
           <ul>

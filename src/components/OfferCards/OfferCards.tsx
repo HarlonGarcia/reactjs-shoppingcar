@@ -1,17 +1,17 @@
-import "./OfferCard.css";
+import "./OfferCards.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Card } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 
 import { AppDispatch } from "../../utils/store";
-import { api } from "../../utils/api";
 import CustomButton from "../shared/CustomButton/CustomButton";
 import { setNotUpdated } from "../../features/offer-slice";
 import { formatCurrency } from "../../utils/formatCurrency";
 import not_found from "../../assets/not-found.jpg";
+import { updateOfferViewsById } from "../../services/offers-service";
 
-interface OfferCardProps {
+interface OfferCardsProps {
   data: Offer[];
 }
 
@@ -19,7 +19,7 @@ interface OfferCardItemProps {
   offer: Offer;
 }
 
-export default function OfferCards({ data }: OfferCardProps) {
+export default function OfferCards({ data }: OfferCardsProps) {
   return (
     <>
       {data.map((offer, index) => (
@@ -34,7 +34,7 @@ function OfferCardItem({ offer }: OfferCardItemProps) {
   const dispatch = useDispatch<AppDispatch>();
 
   const goToDetails = () => {
-    api.patch(`/offers/${offer.id}`);
+    updateOfferViewsById(offer.id);
     dispatch(setNotUpdated());
     navigate(`/${offer.id}`);
   };

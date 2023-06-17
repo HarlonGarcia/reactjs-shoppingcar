@@ -1,0 +1,9 @@
+.modal-description > span {
+  margin: 0 0.25rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.modal-description > .modal-delete {
+  color: var(--red);
+}

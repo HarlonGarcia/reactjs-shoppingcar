@@ -10,13 +10,18 @@
   
   --yellow: #E1CC1B;
   --red: #CD0D0D;
+
   --green: #28CC1A;
+  --green-dark: #209715;
+  
   --blue: #0781d3;
   --blue-dark: #4d6281;
+  
   
   --shadow-dark: rgba(27, 27, 27, 0.5);;
   --shadow: rgba(71, 71, 71, 0.5);;
   --shadow-light: rgba(122, 122, 122, 0.5);
+  --shadow-clearer: rgba(135, 135, 135, 0.1);
   
 
   /* Fonts */

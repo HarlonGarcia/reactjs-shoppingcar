@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./AdminPanel.css";
 import { Input, Space, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
-import { useOfferSelector } from "../../hooks/useOfferSelector";
-import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import { useDispatch } from "react-redux";
+
+import Overlay from "../../components/Overlay/Overlay";
+import { useOfferSelector } from "../../hooks/useOfferSelector";
 import { getOffers } from "../../features/offer-slice";
 import { AppDispatch } from "../../utils/store";
-import { api } from "../../utils/api";
+import { getOffersByModel } from "../../services/offers-service";
 
 export enum ActionEnum {
   EDIT,
@@ -24,19 +24,19 @@ export default function AdminPanel() {
   const [searchOffers, setSearchOffers] = React.useState<Offer[]>();
 
   const offers: Offer[] = useOfferSelector((state) => [...state.offers].flat());
-
   const dispatch = useDispatch<AppDispatch>();
-  const fetchData = async (startsWith?: string) => {
-    startsWith ? "" : dispatch(getOffers());
+
+  const fetchData = async () => {
+    dispatch(getOffers());
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchData();
   }, []);
 
   const onSearch = async (value: string) => {
-    const { data } = await api.get(`/offers/filter?startsWith=${value}`);
-    setSearchOffers(data);
+    const response = await getOffersByModel(value);
+    setSearchOffers(response);
   };
 
   const handleAction = async (action: ActionEnum, offer?: Offer) => {
@@ -51,9 +51,13 @@ export default function AdminPanel() {
     setCurrentOffer(null);
   };
 
+  const handleRowStyle = (record: Offer, index: number) => {
+    return index % 2 === 0 ? "admin-table-row-even" : "admin-table-row-odd";
+  };
+
   return (
     <div className="admin-container">
-      <ConfirmationModal
+      <Overlay
         isOpen={isOpen}
         toggleModal={() => setIsOpen(false)}
         currentOffer={currentOffer}
@@ -63,6 +67,7 @@ export default function AdminPanel() {
       />
       <div className="admin-header">
         <Input.Search
+          className="admin-search"
           placeholder="Digite o modelo"
           onSearch={onSearch}
           style={{
@@ -74,6 +79,8 @@ export default function AdminPanel() {
         className="admin-table"
         dataSource={searchOffers || offers}
         size="middle"
+        rowKey={({ id }) => id}
+        rowClassName={handleRowStyle}
       >
         <Table.Column title="ID" key={"id"} render={({ id }) => id} />
         <Table.Column
@@ -92,10 +99,10 @@ export default function AdminPanel() {
           render={(offer) => (
             <Space size="middle">
               <button onClick={() => handleAction(ActionEnum.EDIT, offer)}>
-                <EditOutlined />
+                <EditOutlined className="edit-icon" />
               </button>
               <button onClick={() => handleAction(ActionEnum.DELETE, offer)}>
-                <DeleteOutlined />
+                <DeleteOutlined className="delete-icon" />
               </button>
             </Space>
           )}
