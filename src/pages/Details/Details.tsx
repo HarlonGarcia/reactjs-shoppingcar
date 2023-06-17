@@ -10,6 +10,7 @@ import {
   FlagOutlined,
   TagOutlined,
 } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 import { formatCurrency } from "../../utils/formatCurrency";
 import { formatDate } from "../../utils/formatDate";
@@ -39,7 +40,12 @@ export default function Details() {
       </div>
     );
   return (
-    <div className="details-container">
+    <motion.div
+      className="details-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1>{offer.model}</h1>
       <PhotosCarousel
         views={offer.views}
@@ -108,6 +114,6 @@ export default function Details() {
           </ul>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

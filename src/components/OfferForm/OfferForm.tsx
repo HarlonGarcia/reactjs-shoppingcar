@@ -1,5 +1,6 @@
 import "./OfferForm.css";
 import { CloseOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 import useForm from "../../hooks/useForm";
 import { createNewOffer, updateOfferById } from "../../services/offers-service";
@@ -54,7 +55,12 @@ export default function OfferForm({
     formData;
 
   return (
-    <div className="form-container">
+    <motion.div
+      className="form-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="form-header">
         <button onClick={onClose}>
           <CloseOutlined />
@@ -143,6 +149,6 @@ export default function OfferForm({
       <button className="form-button" onClick={handleFormSubmit}>
         {currentState ? "Editar oferta" : "Adicionar oferta"}
       </button>
-    </div>
+    </motion.div>
   );
 }

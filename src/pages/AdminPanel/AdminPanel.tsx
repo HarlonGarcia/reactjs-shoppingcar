@@ -3,6 +3,7 @@ import "./AdminPanel.css";
 import { Input, Space, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 
 import Overlay from "../../components/Overlay/Overlay";
 import { useOfferSelector } from "../../hooks/useOfferSelector";
@@ -32,7 +33,7 @@ export default function AdminPanel() {
 
   React.useEffect(() => {
     fetchData();
-  }, []);
+  }, [isOpen]);
 
   const onSearch = async (value: string) => {
     const response = await getOffersByModel(value);
@@ -56,7 +57,12 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="admin-container">
+    <motion.div
+      className="admin-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Overlay
         isOpen={isOpen}
         toggleModal={() => setIsOpen(false)}
@@ -114,6 +120,6 @@ export default function AdminPanel() {
       >
         Adicionar oferta
       </button>
-    </div>
+    </motion.div>
   );
 }

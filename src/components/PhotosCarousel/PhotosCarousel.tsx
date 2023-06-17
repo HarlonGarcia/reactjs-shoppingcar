@@ -1,6 +1,7 @@
 import "./PhotosCarousel.css";
 import { EyeOutlined, FileExcelOutlined } from "@ant-design/icons";
-
+import { motion } from "framer-motion";
+import { container, item } from "../../utils/animationOptions";
 interface PhotosCarouselProps {
   views: number;
   photos: string[];
@@ -23,13 +24,18 @@ export default function PhotosCarousel({
           </small>
         )}
       </div>
-      <div className="carousel-slider">
+      <motion.div
+        className="carousel-slider"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
         {photos.map((photoUrl, index) => (
-          <div className="carousel-item" key={index}>
+          <motion.div className="carousel-item" key={index} variants={item}>
             <img src={photoUrl} alt={model}></img>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <div className="carousel-views">
         <EyeOutlined />
         <small>{views} visualizações</small>

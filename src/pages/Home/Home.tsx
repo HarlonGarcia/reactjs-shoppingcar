@@ -54,9 +54,7 @@ export default function Home() {
           </button>
         </div>
       </header>
-      <div className="home-offers-container">
-        {isGrade ? <OfferCards data={offers} /> : <OfferList data={offers} />}
-      </div>
+      {isGrade ? <OfferCards data={offers} /> : <OfferList data={offers} />}
     </div>
   );
 }

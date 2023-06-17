@@ -1,5 +1,5 @@
 .home-container {
-  max-width: 100%;
+  width: 100%;
   padding-bottom: 3rem;
 }
 
@@ -49,14 +49,10 @@
 }
 
 @media (min-width: 1200px) {
-  .home-offers-container, .home-header {
+  .home-container {
     width: 80%;
     max-width: 65rem;
     margin: 0 auto;
-  }
-  
-  .home-offers-container  {
-    gap: 1.5rem;
   }
 
   .home-header {

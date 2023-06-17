@@ -1,5 +1,15 @@
 .card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+}
+
+.card-container > li {
   width: 100%;
+}
+
+.card-item {
   font-family: var(--inter-medium);
 }
 
@@ -38,7 +48,7 @@
 }
 
 @media (min-width: 440px) {
-  .card-container {
+  .card-container > li {
     width: 47.6%;
   }
 
@@ -48,13 +58,13 @@
 }
 
 @media (min-width: 768px) {
-  .card-container {
+  .card-container > li {
     width: 31%;
   }
 }
 
 @media (min-width: 1200px) {
-  .card-container {
+  .card-container > li {
     width: 23%;
   }
 }

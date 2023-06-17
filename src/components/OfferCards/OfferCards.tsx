@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Card } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 import { AppDispatch } from "../../utils/store";
 import CustomButton from "../shared/CustomButton/CustomButton";
@@ -10,6 +11,7 @@ import { setNotUpdated } from "../../features/offer-slice";
 import { formatCurrency } from "../../utils/formatCurrency";
 import not_found from "../../assets/not-found.jpg";
 import { updateOfferViewsById } from "../../services/offers-service";
+import { container, item } from "../../utils/animationOptions";
 
 interface OfferCardsProps {
   data: Offer[];
@@ -21,11 +23,18 @@ interface OfferCardItemProps {
 
 export default function OfferCards({ data }: OfferCardsProps) {
   return (
-    <>
+    <motion.ul
+      className="card-container"
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
       {data.map((offer, index) => (
-        <OfferCardItem key={index.toString() + offer.model} offer={offer} />
+        <motion.li key={index.toString() + offer.model} variants={item}>
+          <OfferCardItem offer={offer} />
+        </motion.li>
       ))}
-    </>
+    </motion.ul>
   );
 }
 
@@ -41,7 +50,7 @@ function OfferCardItem({ offer }: OfferCardItemProps) {
 
   return (
     <Card
-      className="card-container"
+      className="card-item"
       cover={
         <figure className="card-cover">
           <img src={offer.photos[0] || not_found} alt={offer.model} />
