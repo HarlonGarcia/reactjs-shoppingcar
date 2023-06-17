@@ -1,26 +1,29 @@
 .navbar-container {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
-  height: var(--navbar-height);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-
+  
   background-color: var(--primary-light);
   box-shadow: 0 1px 4px var(--shadow-light);
 }
 
-.navbar-container > h1 {
+.navbar-content {
+  height: var(--navbar-height);
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.navbar-content > h1 {
   font-family: var(--inter-black);
 }
 
 .navbar-items {
   display: none;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .navbar-items > button > a {
@@ -33,3 +36,12 @@
     display: flex;
   }
 }
+
+@media (min-width: 1200px) {
+  .navbar-content {
+    width: 80%;
+    max-width: 70rem;
+    margin: 0 auto;
+  }
+}
+

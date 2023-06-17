@@ -1,5 +1,5 @@
 import "./PhotosCarousel.css";
-import { EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined, FileExcelOutlined } from "@ant-design/icons";
 
 interface PhotosCarouselProps {
   views: number;
@@ -15,7 +15,13 @@ export default function PhotosCarousel({
   return (
     <section className="carousel-container">
       <div className="carousel-title">
-        <small>{photos.length} fotos disponíveis</small>
+        {photos.length > 0 ? (
+          <small>{photos.length} fotos disponíveis</small>
+        ) : (
+          <small>
+            <FileExcelOutlined /> Nenhuma foto disponível
+          </small>
+        )}
       </div>
       <div className="carousel-slider">
         {photos.map((photoUrl, index) => (

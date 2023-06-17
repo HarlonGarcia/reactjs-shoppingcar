@@ -11,16 +11,18 @@ export default function Navbar() {
   return (
     <>
       <header className="navbar-container">
-        <h1>ShoppingCar</h1>
-        <div className="navbar-items">
-          <button>
-            <Link to="/">Ofertas</Link>
-          </button>
-          <button>
-            <Link to="/admin">Administrar</Link>
-          </button>
+        <div className="navbar-content">
+          <h1>ShoppingCar</h1>
+          <div className="navbar-items">
+            <button>
+              <Link to="/">Ofertas</Link>
+            </button>
+            <button>
+              <Link to="/admin">Administrar</Link>
+            </button>
+          </div>
+          <MenuToggle isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-        <MenuToggle isOpen={isOpen} setIsOpen={setIsOpen} />
       </header>
       <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
     </>

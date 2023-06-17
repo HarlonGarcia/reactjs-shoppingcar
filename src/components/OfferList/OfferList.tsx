@@ -16,6 +16,12 @@ interface ListItemProps {
   offer: Offer;
 }
 
+const detailsButtonStyles = {
+  backgroundColor: "#0781d3",
+  fontFamily: "Inter-SemiBold",
+  color: "#FFFAFA",
+};
+
 export default function OfferList({ data }: OfferListProps) {
   return (
     <List
@@ -59,7 +65,11 @@ function ListItem({ offer }: ListItemProps) {
         </div>
         <div className="row-details">
           <strong>{formatCurrency(offer.price)}</strong>
-          <CustomButton onClick={goToDetails} defaultStyles>
+          <CustomButton
+            onClick={goToDetails}
+            defaultStyles
+            style={detailsButtonStyles}
+          >
             Ver detalhes
           </CustomButton>
         </div>
