@@ -63,7 +63,7 @@ function OfferCardItem({ offer }: OfferCardItemProps) {
       hoverable
     >
       <Card.Meta title={`${offer.model}, ${offer.year}`} />
-      <h3>{offer.brand}</h3>
+      <h3>{offer.brand || "Marca não informada"}</h3>
       <div className="card-details">
         <strong>{formatCurrency(offer.price)}</strong>
         <div className="card-views">

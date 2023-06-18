@@ -9,7 +9,7 @@
   margin-bottom: 2rem;
 }
 
-.admin-search > span, .admin-search > input {
+.admin-search > span > input, .admin-search > span > span > button {
   background-color: var(--primary-light);
 }
 
@@ -22,10 +22,13 @@
 }
 
 .edit-icon {
+  margin-right: 0.5rem;
+  font-size: 1rem;
   color: var(--blue);
 }
 
 .delete-icon {
+  font-size: 1rem;
   color: var(--red);
 }
 

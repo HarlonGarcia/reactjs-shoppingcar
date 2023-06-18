@@ -35,9 +35,15 @@ export default function AdminPanel() {
     fetchData();
   }, [isOpen, currentOffer]);
 
-  const onSearch = async (value: string) => {
+  const handleSearch = async (value: string) => {
     const response = await getOffersByModel(value);
     setSearchOffers(response);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch(event.currentTarget.value);
+    }
   };
 
   const handleAction = async (action: ActionEnum, offer?: Offer) => {
@@ -52,6 +58,8 @@ export default function AdminPanel() {
     setCurrentOffer(null);
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const handleRowStyle = (record: Offer, index: number) => {
     return index % 2 === 0 ? "admin-table-row-even" : "admin-table-row-odd";
   };
@@ -74,7 +82,8 @@ export default function AdminPanel() {
         <Input.Search
           className="admin-search"
           placeholder="Digite o modelo"
-          onSearch={onSearch}
+          onSearch={handleSearch}
+          onKeyDown={handleKeyDown}
           style={{
             width: 200,
           }}
@@ -86,6 +95,7 @@ export default function AdminPanel() {
         size="middle"
         rowKey={({ id }) => id}
         rowClassName={handleRowStyle}
+        pagination={{ pageSize: 5 }}
       >
         <Table.Column title="ID" key={"id"} render={({ id }) => id} />
         <Table.Column

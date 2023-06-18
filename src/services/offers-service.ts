@@ -16,7 +16,13 @@ const getOffersByModel = async (model: string): Promise<Offer[]> => {
 };
 
 const createNewOffer = async (payload: Offer | OfferDto) => {
-  const response = await api.post(`/offers`, payload, {
+  const formData = new FormData();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+
+  const response = await api.post(`/offers`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

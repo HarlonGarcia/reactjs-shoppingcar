@@ -1,7 +1,9 @@
+import React from "react";
 import "./OfferForm.css";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, FileAddOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import { Spin } from "antd";
 
 import useForm from "../../hooks/useForm";
 import { createNewOffer, updateOfferById } from "../../services/offers-service";
@@ -30,9 +32,14 @@ export default function OfferForm({
   onClose,
   clearCurrentOffer,
 }: OfferFormProps) {
-  const { formData, handleInputChange, handleInputNumberChange } = useForm(
-    currentState || initialState
-  );
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const {
+    formData,
+    handleInputChange,
+    handleInputNumberChange,
+    handleUploadFile,
+  } = useForm(currentState || initialState);
 
   const handleEditOffer = async (offerId: number, payload: OfferDto) => {
     const response = await updateOfferById(offerId, payload);
@@ -45,21 +52,24 @@ export default function OfferForm({
 
     clearCurrentOffer();
     onClose();
+    setIsLoading(false);
   };
 
   const handleAddOffer = async (payload: OfferDto) => {
-    const response = await createNewOffer(payload);
-
-    if (response.status == 201) {
+    try {
+      await createNewOffer(payload);
       toast.success("Oferta criada com sucesso!", toastOptions);
-    } else {
-      toast.error("Erro ao criar oferta!", toastOptions);
+    } catch (error) {
+      toast.error("Arquivo muito grande!", toastOptions);
+    } finally {
+      onClose();
+      setIsLoading(false);
     }
-
-    onClose();
   };
 
   const handleFormSubmit = () => {
+    setIsLoading(true);
+
     if (currentState) {
       handleEditOffer(currentState.id, formData);
     } else {
@@ -162,9 +172,33 @@ export default function OfferForm({
           </ul>
         </div>
       </form>
-      <button className="form-button" onClick={handleFormSubmit}>
-        {currentState ? "Editar oferta" : "Adicionar oferta"}
-      </button>
+      <div className="form-bottom">
+        {!currentState ? (
+          <div className="form-file">
+            <label htmlFor="photos">
+              <span>
+                <FileAddOutlined />
+              </span>
+              <span>Enviar imagem</span>
+            </label>
+            <input
+              id="photos"
+              type="file"
+              name="photos"
+              onChange={handleUploadFile}
+            />
+          </div>
+        ) : null}
+        <button className="form-button" onClick={handleFormSubmit}>
+          {isLoading ? (
+            <Spin className="form-loading" size="small" />
+          ) : currentState ? (
+            "Editar oferta"
+          ) : (
+            "Adicionar oferta"
+          )}
+        </button>
+      </div>
     </motion.div>
   );
 }

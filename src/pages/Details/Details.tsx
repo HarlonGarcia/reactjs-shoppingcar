@@ -30,7 +30,7 @@ export default function Details() {
     if (offerId) {
       getCurrentOffer(offerId);
     }
-  }, []);
+  }, [offerId]);
 
   if (!offer)
     return (

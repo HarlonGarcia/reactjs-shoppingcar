@@ -1,4 +1,6 @@
 import { useState, ChangeEvent } from "react";
+import { toast } from "react-toastify";
+import { toastOptions } from "../utils/options";
 
 const useForm = (initialState: OfferDto) => {
   const [formData, setFormData] = useState<OfferDto>(initialState);
@@ -14,7 +16,21 @@ const useForm = (initialState: OfferDto) => {
     setFormData({ ...formData, [target.id]: newValue });
   };
 
-  return { formData, handleInputChange, handleInputNumberChange };
+  const handleUploadFile = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    const file = target.files?.[0];
+
+    if (file) {
+      setFormData({ ...formData, [target.id]: file });
+      toast("Imagem enviada com sucesso!", toastOptions);
+    }
+  };
+
+  return {
+    formData,
+    handleInputChange,
+    handleInputNumberChange,
+    handleUploadFile,
+  };
 };
 
 export default useForm;

@@ -46,9 +46,8 @@ export default function Overlay({
       setIsLoading(true);
 
       const response = await deleteOfferById(offerId);
-      console.log(response);
 
-      if (response.status == 201) {
+      if (response.status == 200) {
         toast.success("Oferta deletada com sucesso!", toastOptions);
       } else {
         toast.error("Erro ao deletar oferta!"), toastOptions;
