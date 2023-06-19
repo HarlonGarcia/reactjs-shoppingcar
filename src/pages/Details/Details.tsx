@@ -16,14 +16,16 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { formatDate } from "../../utils/formatDate";
 import PhotosCarousel from "../../components/PhotosCarousel/PhotosCarousel";
 import { getOfferById } from "../../services/offers-service";
+import Loader from "../../components/shared/Loader/Loader";
 
 export default function Details() {
   const [offer, setOffer] = React.useState<Offer | null>(null);
+
   const { offerId } = useParams();
 
   const getCurrentOffer = async (offerId: string) => {
-    const response = await getOfferById(Number(offerId));
-    setOffer(response);
+    const currentOffer = await getOfferById(Number(offerId));
+    setOffer(currentOffer);
   };
 
   React.useEffect(() => {
@@ -32,13 +34,7 @@ export default function Details() {
     }
   }, [offerId]);
 
-  if (!offer)
-    return (
-      <div className="not-found">
-        <h1>Não há nada aqui</h1>
-        <span>{`:(`}</span>
-      </div>
-    );
+  if (!offer) return <Loader />;
   return (
     <motion.div
       className="details-container"

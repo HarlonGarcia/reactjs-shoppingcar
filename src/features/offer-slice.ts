@@ -16,8 +16,8 @@ const initialState: OfferState = {
 };
 
 export const getOffers = createAsyncThunk("getOffers", async () => {
-  const response = await getAllOffers();
-  return response;
+  const data = await getAllOffers();
+  return data;
 });
 
 export const offerSlice = createSlice({
@@ -46,6 +46,7 @@ export const offerSlice = createSlice({
     });
 
     builder.addCase(getOffers.rejected, (state) => {
+      state.isLoading = false;
       state.isError = true;
       state.isUpdated = false;
     });

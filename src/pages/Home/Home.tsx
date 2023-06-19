@@ -13,6 +13,7 @@ import CustomButton from "../../components/shared/CustomButton/CustomButton";
 import OfferList from "../../components/OfferList/OfferList";
 import OfferCards from "../../components/OfferCards/OfferCards";
 import DataNotFound from "../../components/shared/DataNotFound/DataNotFound";
+import Loader from "../../components/shared/Loader/Loader";
 
 const selectedButton = {
   backgroundColor: "#2c2c2c",
@@ -21,7 +22,7 @@ const selectedButton = {
 
 export default function Home() {
   const [isGrade, setIsGrade] = React.useState(true);
-  const offers = useOfferSelector((state) => [...state.offers].flat());
+  const { offers, isLoading } = useOfferSelector((state) => state);
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchData = async () => {
@@ -32,9 +33,8 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (offers.length <= 0) {
-    return <DataNotFound path="home" />;
-  }
+  if (isLoading) return <Loader />;
+  if (offers.length <= 0) return <DataNotFound path="home" />;
   return (
     <div className="home-container">
       <header className="home-header">

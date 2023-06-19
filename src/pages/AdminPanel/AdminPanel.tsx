@@ -10,6 +10,8 @@ import { useOfferSelector } from "../../hooks/useOfferSelector";
 import { getOffers } from "../../features/offer-slice";
 import { AppDispatch } from "../../utils/store";
 import { getOffersByModel } from "../../services/offers-service";
+import Loader from "../../components/shared/Loader/Loader";
+import DataNotFound from "../../components/shared/DataNotFound/DataNotFound";
 
 export enum ActionEnum {
   EDIT,
@@ -24,7 +26,8 @@ export default function AdminPanel() {
   const [currentOffer, setCurrentOffer] = React.useState<Offer | null>(null);
   const [searchOffers, setSearchOffers] = React.useState<Offer[]>();
 
-  const offers: Offer[] = useOfferSelector((state) => [...state.offers].flat());
+  const { offers, isLoading } = useOfferSelector((state) => state);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchData = async () => {
@@ -81,9 +84,10 @@ export default function AdminPanel() {
       <div className="admin-header">
         <Input.Search
           className="admin-search"
-          placeholder="Digite o modelo"
+          placeholder="Digite o modelo do carro"
           onSearch={handleSearch}
           onKeyDown={handleKeyDown}
+          size="middle"
           style={{
             width: 200,
           }}
